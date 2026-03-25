@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Sandhya!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --accent: #ff4d6d;
+            --text: #ffffff;
+            --gold: #ffd700;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease;
+        }
+
+        .start-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        section {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+
+        section.visible { opacity: 1; transform: translateY(0); }
+
+        h1 { font-family: 'Dancing Script', cursive; font-size: 2.8rem; color: var(--accent); margin-bottom: 15px; }
+        .wish-text { font-size: 1.1rem; line-height: 1.8; font-weight: 300; max-width: 320px; color: #eee; }
+        .highlight { color: var(--accent); font-weight: 600; }
+
+        .photo-frame {
+            width: 85%;
+            max-width: 280px;
+            background: white;
+            padding: 10px 10px 40px 10px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.7);
+            margin: 30px 0;
+        }
+        .photo-frame img { width: 100%; height: auto; display: block; border: 1px solid #ddd; }
+
+        /* Cake Styling */
+        .cake-container { position: relative; cursor: pointer; padding: 20px; margin: 40px 0; }
+        .cake { width: 140px; height: 90px; background: #4e342e; border-radius: 10px 10px 0 0; position: relative; }
+        .cake::before { content: ''; position: absolute; width: 100%; height: 20px; background: #f48fb1; top: 30px; left: 0; }
+        .candle { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); width: 8px; height: 30px; background: var(--gold); border-radius: 4px; }
+        .flame { 
+            position: absolute; top: -55px; left: 50%; transform: translateX(-50%);
+            width: 16px; height: 26px; background: #ffeb3b; border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 20px #ffeb3b;
+            animation: flicker 0.1s infinite alternate;
+        }
+        @keyframes flicker { from { opacity: 0.8; } to { opacity: 1; transform: translateX(-50%) scale(1.1); } }
+
+        .dev-tag {
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.2);
+            letter-spacing: 3px;
+            margin-top: 60px;
+            padding-bottom: 30px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="overlay">
+        <h1>For My Sandhya</h1>
+        <button class="start-btn" onclick="startApp()">Open My Heart</button>
+    </div>
+
+    <audio id="bgMusic" src="music.mp3" loop></audio>
+
+    <section>
+        <h1>Happy Birthday Sandhya 💗🫶🏻</h1>
+        <div class="wish-text">
+            I love you more than words can say. Wishing you a life full of happiness and peace.
+        </div>
+        <div class="photo-frame" style="transform: rotate(-2deg);"><img src="1.jpeg"></div>
+    </section>
+
+    <section>
+        <div class="wish-text">In a world full of temporary things, <span class="highlight">you are my forever.</span></div>
+        <div class="photo-frame" style="transform: rotate(3deg);"><img src="2.jpeg"></div>
+    </section>
+
+    <section>
+        <h2>Make a wish, My Love!</h2>
+        <div class="cake-container" onclick="blowCandle()">
+            <div class="flame" id="flame"></div>
+            <div class="candle"></div>
+            <div class="cake"></div>
+        </div>
+        <p id="candle-hint">(Tap the flame to blow it out)</p>
+    </section>
+
+    <section>
+        <div class="photo-frame" style="transform: rotate(-3deg);"><img src="3.jpeg"></div>
+        <div class="wish-text">You aren't just my girlfriend; you're the person who makes <span class="highlight">life worth living.</span></div>
+    </section>
+
+    <section>
+        <div class="photo-frame" style="transform: rotate(2deg);"><img src="4.jpeg"></div>
+        <div class="wish-text">Every time I see you, I realize how <span class="highlight">lucky I am</span> to have you by my side.</div>
+    </section>
+
+    <section>
+        <div class="photo-frame" style="transform: rotate(-1deg);"><img src="5.jpeg"></div>
+        <div class="wish-text">Your smile is the only sunshine I ever need.</div>
+    </section>
+
+    <section>
+        <div class="photo-frame" style="transform: rotate(4deg);"><img src="6.jpeg"></div>
+        <div class="wish-text">You matter the most to me, today and <span class="highlight">every single day.</span></div>
+    </section>
+
+    <section>
+        <div class="photo-frame" style="transform: rotate(-2deg);"><img src="7.jpeg"></div>
+        <div class="wish-text">I promise to hold your hand through every high and every low.</div>
+    </section>
+
+    <section>
+        <div class="photo-frame" style="transform: rotate(3deg);"><img src="8.jpeg"></div>
+        <div class="wish-text">May this year bring you as much joy as <span class="highlight">you bring into my life.</span></div>
+    </section>
+
+    <section>
+        <div class="photo-frame" style="transform: rotate(-3deg);"><img src="9.jpeg"></div>
+        <div class="wish-text">You are the most beautiful person I know, inside and out.</div>
+    </section>
+
+    <section>
+        <div class="photo-frame"><img src="10.jpeg"></div>
+        <h1>Forever Yours</h1>
+        <div class="wish-text">Happy Birthday, Sandhya! 💗🫶🏻</div>
+        <div class="dev-tag">Made by SHWAT</div>
+    </section>
+
+    <script>
+        function startApp() {
+            document.getElementById('overlay').style.opacity = '0';
+            setTimeout(() => { document.getElementById('overlay').style.display = 'none'; }, 1000);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        function blowCandle() {
+            const flame = document.getElementById('flame');
+            const music = document.getElementById('bgMusic');
+
+            if(flame.style.display === 'none') return; 
+
+            flame.style.display = 'none';
+            document.getElementById('candle-hint').innerText = "Party Time! ❤️";
+
+            // Set music to 17 seconds and play
+            music.currentTime = 17; 
+            music.play();
+
+            // Party popper explosion
+            var duration = 5 * 1000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+              confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0, y: 0.8 }, colors: ['#ff4d6d', '#ffd700'] });
+              confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1, y: 0.8 }, colors: ['#ff4d6d', '#ffffff'] });
+              if (Date.now() < end) { requestAnimationFrame(frame); }
+            }());
+        }
+    </script>
+</body>
+</html>
